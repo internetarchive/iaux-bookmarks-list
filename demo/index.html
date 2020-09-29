@@ -2,28 +2,119 @@
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmarks List</title>
   <style>
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #ffffff;
+        background: #181818;
+      }
+    }
+    :root {
+      --menuButtonLabelDisplay: block;
+      --menuSliderBg: #151515;
+      --primaryTextColor: #fff;
+      --menuWidth: 320px;
+      --animationTiming: .25s;
+      --iconFillColor: #fff;
+      --iconStrokeColor: #fff;
+      --iconWidth: 40px;
+      --iconHeight: 40px;
+      --activeButtonBg: #282828;
+      --closeMenuIconWidth: 20px;
+      --closeMenuIconHeight: 20px;
+
+      --activeBookmark: #538bc5;
+    }
+
+    html {
+      font: normal 10px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
     body {
-      background: #fafafa;
+      margin: 0;
+    }
+
+    button {
+      height: 2rem;
+      margin: 1rem;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: minmax(auto, calc(100vh - 4rem));
+    }
+
+    #menu {
+      position: relative;
+      width: var(--menuWidth);
     }
   </style>
 </head>
 <body>
-  <div id="demo"></div>
+  <button>Toggle menu</button>
+  <main>
+    <div id="menu"></div>
+  </main>
 
   <script type="module">
-    import { html, render } from 'lit-html';
+    import { render } from 'lit-html';
+    import { html, css, LitElement } from 'lit-element';
     import '../ia-bookmarks-list.js';
+    import '@internetarchive/ia-menu-slider/ia-menu-slider';
+    import bookmarksController from './bookmarks_controller.js';
 
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <ia-bookmarks-list .title=${title}>
-          some more light-dom
-        </ia-bookmarks-list>
+    const bookmarks = [{
+      id: 1,
+      thumbnail: '//placehold.it/37x46',
+      page: 'xii',
+    }, {
+      id: 2,
+      thumbnail: '//placehold.it/37x46/06c/fff',
+      page: 9,
+      note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
+    }, {
+      id: 3,
+      thumbnail: '//placehold.it/37x46/e5e5e5/06c',
+      page: 9,
+      note: 'Interesting quote here regarding the division of labor',
+    }];
+
+    const menuSlider = document.createElement('ia-menu-slider');
+    const bookmarksList = document.createElement('ia-bookmarks-list');
+    bookmarksList.renderHeader = true;
+    bookmarksList.bookmarks = bookmarks;
+
+    const bookmarksMenu = {
+      icon: html`
+        <ia-icon-bookmark></ia-icon-bookmark>
       `,
-      document.querySelector('#demo')
-    );
+      label: 'Bookmarks',
+      id: 'bookmarks',
+      component: bookmarksList,
+    };
+    menuSlider.menus = [bookmarksMenu];
+    menuSlider.open = true;
+    menuSlider.selectedMenu = bookmarksMenu.id;
+
+    document.querySelector('#menu').appendChild(menuSlider);
+
+    menuSlider.updateComplete.then(() => {
+      // Toggle button for menu drawer
+      document.querySelector('button').addEventListener('click', () => {
+        menuSlider.open = !menuSlider.open;
+      });
+    });
+
+    document.addEventListener('bookmarkEdited', ({ detail }) => {
+      console.log(`Bookmark ${detail.bookmark.id} edited`);
+    });
+
+    document.addEventListener('bookmarkSelected', ({ detail }) => {
+      console.log(`Bookmark ${detail.bookmark.id} selected`);
+    });
   </script>
 </body>
 </html>
