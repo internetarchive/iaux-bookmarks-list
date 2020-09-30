@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/internetarchive/iaux-bookmarks-list.svg?branch=master)](https://travis-ci.com/internetarchive/iaux-bookmarks-list)
+[![codecov](https://codecov.io/gh/internetarchive/iaux-bookmarks-list/branch/master/graph/badge.svg)](https://codecov.io/gh/internetarchive/iaux-bookmarks-list)
+
 # \<ia-bookmarks-list>
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
