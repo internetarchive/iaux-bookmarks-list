@@ -3,7 +3,7 @@ import { css } from 'lit-element';
 export default css`
 :host {
   display: block;
-  padding-left: 1rem;
+  padding: 0 1rem;
   color: var(--primaryTextColor);
 }
 
@@ -45,10 +45,13 @@ p {
 button {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
   border: none;
-  background: red;
+  background: transparent;
   cursor: pointer;
+  --iconWidth: 20px;
+  --iconHeight: 20px;
 }
 `;

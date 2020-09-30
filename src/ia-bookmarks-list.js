@@ -2,6 +2,7 @@ import { nothing } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { html, LitElement } from 'lit-element';
+import '@internetarchive/icon-edit-pencil/icon-edit-pencil';
 import bookmarksListCSS from './styles/ia-bookmarks-list.js';
 
 export class IABookmarksList extends LitElement {
@@ -54,7 +55,7 @@ export class IABookmarksList extends LitElement {
       >
         <img src=${bookmark.thumbnail} />
         <h4>Page ${bookmark.page}</h4>
-        <button @click=${e => this.emitEditEvent(e, bookmark)} title="Edit this bookmark"><ia-icon-edit></ia-icon-edit></button>
+        <button @click=${e => this.emitEditEvent(e, bookmark)} title="Edit this bookmark"><ia-icon-edit-pencil></ia-icon-edit-pencil></button>
         ${bookmark.note ? html`<p>${bookmark.note}</p>` : nothing}
       </li>
     `;
