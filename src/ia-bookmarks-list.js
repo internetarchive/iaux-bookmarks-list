@@ -1,6 +1,6 @@
 import { nothing } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat.js';
-import {classMap} from 'lit-html/directives/class-map.js';
+import { classMap } from 'lit-html/directives/class-map.js';
 import { html, LitElement } from 'lit-element';
 import bookmarksListCSS from './styles/ia-bookmarks-list.js';
 
@@ -50,9 +50,7 @@ export class IABookmarksList extends LitElement {
     return html`
       <li
         @click=${() => this.emitSelectedEvent(bookmark)}
-        class=${classMap({
-          active: bookmark.id === this.activeBookmarkID
-        })}
+        class=${classMap({ active: bookmark.id === this.activeBookmarkID })}
       >
         <img src=${bookmark.thumbnail} />
         <h4>Page ${bookmark.page}</h4>
