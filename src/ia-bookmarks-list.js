@@ -60,7 +60,7 @@ export class IABookmarksList extends LitElement {
     `;
   }
 
-  get resultsCount() {
+  get bookmarksCount() {
     const count = this.bookmarks.length;
     return html`<small>(${count})</small>`;
   }
@@ -69,7 +69,7 @@ export class IABookmarksList extends LitElement {
     return html`<header>
       <h3>
         Bookmarks
-        ${this.bookmarks.length ? this.resultsCount : nothing}
+        ${this.bookmarks.length ? this.bookmarksCount : nothing}
       </h3>
     </header>`;
   }
