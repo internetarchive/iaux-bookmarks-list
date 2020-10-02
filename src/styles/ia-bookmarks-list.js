@@ -5,6 +5,7 @@ export default css`
   display: block;
   padding: 0 1rem;
   color: var(--primaryTextColor);
+  background: var(--activeButtonBg);
 }
 
 small {
@@ -12,7 +13,7 @@ small {
 }
 
 ul {
-  padding: 0;
+  padding: 0 0 2rem 0;
   margin: 0;
   list-style: none;
 }

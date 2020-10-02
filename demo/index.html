@@ -81,12 +81,47 @@
       thumbnail: '//placehold.it/37x46/e5e5e5/06c',
       page: 9,
       note: 'Interesting quote here regarding the division of labor',
+    }, {
+      id: 4,
+      thumbnail: '//placehold.it/37x46',
+      page: 'xii',
+    }, {
+      id: 5,
+      thumbnail: '//placehold.it/37x46/06c/fff',
+      page: 9,
+      note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
+    }, {
+      id: 6,
+      thumbnail: '//placehold.it/37x46/e5e5e5/06c',
+      page: 9,
+      note: 'Interesting quote here regarding the division of labor',
+    }, {
+      id: 7,
+      thumbnail: '//placehold.it/37x46',
+      page: 'xii',
+    }, {
+      id: 8,
+      thumbnail: '//placehold.it/37x46/06c/fff',
+      page: 9,
+      note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
+    }, {
+      id: 9,
+      thumbnail: '//placehold.it/37x46/e5e5e5/06c',
+      page: 9,
+      note: 'Interesting quote here regarding the division of labor',
     }];
 
     const menuSlider = document.createElement('ia-menu-slider');
     const bookmarksList = document.createElement('ia-bookmarks-list');
     bookmarksList.renderHeader = true;
     bookmarksList.bookmarks = bookmarks;
+    bookmarksList.addEventListener('bookmarkEdited', ({ detail }) => {
+      console.log(`Bookmark ${detail.bookmark.id} edited`);
+    });
+
+    bookmarksList.addEventListener('bookmarkSelected', ({ detail }) => {
+      console.log(`Bookmark ${detail.bookmark.id} selected`);
+    });
 
     const bookmarksMenu = {
       icon: html`
@@ -107,14 +142,6 @@
       document.querySelector('button').addEventListener('click', () => {
         menuSlider.open = !menuSlider.open;
       });
-    });
-
-    document.addEventListener('bookmarkEdited', ({ detail }) => {
-      console.log(`Bookmark ${detail.bookmark.id} edited`);
-    });
-
-    document.addEventListener('bookmarkSelected', ({ detail }) => {
-      console.log(`Bookmark ${detail.bookmark.id} selected`);
     });
   </script>
 </body>

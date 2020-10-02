@@ -28,8 +28,6 @@ export class IABookmarksList extends LitElement {
   emitEditEvent(e, bookmark) {
     e.stopPropagation();
     this.dispatchEvent(new CustomEvent('bookmarkEdited', {
-      bubbles: true,
-      composed: true,
       detail: {
         bookmark,
       },
@@ -39,8 +37,6 @@ export class IABookmarksList extends LitElement {
   emitSelectedEvent(bookmark) {
     this.activeBookmarkID = bookmark.id;
     this.dispatchEvent(new CustomEvent('bookmarkSelected', {
-      bubbles: true,
-      composed: true,
       detail: {
         bookmark,
       },
