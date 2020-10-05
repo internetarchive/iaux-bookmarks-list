@@ -6,24 +6,50 @@
       "description": "A component with a title and an action counter",
       "properties": [
         {
-          "name": "title",
-          "type": "String",
-          "description": "The title of your component",
-          "default": "Hey there"
+          "name": "activeBookmarkID",
+          "type": "Number",
+          "description": "The index of the currently active bookmark",
+          "default": "undefined"
         },
         {
-          "name": "counter",
-          "type": "Number",
-          "description": "An action counter",
-          "default": 0
+          "name": "bookmarks",
+          "type": "Array",
+          "description": "The bookmarks to be rendered",
+          "default": "[]"
+        },
+        {
+          "name": "renderHeader",
+          "type": "Boolean",
+          "description": "A toggle for header rendering",
+          "default": "false"
         }
       ],
-      "events": [],
+      "events": [{
+        "name": "bookmarkEdited",
+        "description": "Edit action for a bookmark clicked",
+        "parameters": [
+          {
+            "name": "bookmark",
+            "type": "Object",
+            "description": "The bookmark record to edit"
+          }
+        ]
+      }, {
+        "name": "bookmarkSelected",
+        "description": "Bookmark selected via click event",
+        "parameters": [
+          {
+            "name": "bookmark",
+            "type": "Object",
+            "description": "The bookmark record selected"
+          }
+        ]
+      }],
       "slots": [],
       "cssProperties": [
         {
-          "name": "--ia-bookmarks-list-text-color",
-          "description": "Main Text Color",
+          "name": "--activeBookmark",
+          "description": "Active bookmark border color",
           "type": "Color"
         }
       ]

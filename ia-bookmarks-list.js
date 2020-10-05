@@ -1,3 +1,3 @@
-import { IaBookmarksList } from './src/IaBookmarksList.js';
+import { IABookmarksList } from './src/ia-bookmarks-list.js';
 
-window.customElements.define('ia-bookmarks-list', IaBookmarksList);
+window.customElements.define('ia-bookmarks-list', IABookmarksList);

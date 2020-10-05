@@ -1,1 +1,1 @@
-export { IaBookmarksList } from './src/IaBookmarksList.js';
+export { IABookmarksList } from './src/ia-bookmarks-list.js';
