@@ -20,12 +20,17 @@ ul {
 
 li {
   display: grid;
-  grid-template-columns: 37px 1fr auto;
+  grid-template-columns: var(--bookmarkThumbWidth) 1fr auto;
   grid-gap: .2rem 1rem;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   border: 5px solid transparent;
+}
+
+img {
+  display: block;
+  width: var(--bookmarkThumbWidth);
 }
 
 .active {
