@@ -17,6 +17,7 @@ export class IABookmarksList extends LitElement {
       bookmarkColors: { type: Array },
       bookmarks: { type: Array },
       editedBookmark: { type: Object },
+      renderAddBookmarkButton: { type: Boolean },
       renderHeader: { type: Boolean },
     };
   }
@@ -27,6 +28,7 @@ export class IABookmarksList extends LitElement {
     this.bookmarkColors = [];
     this.bookmarks = [];
     this.editedBookmark = {};
+    this.renderAddBookmarkButton = true;
     this.renderHeader = false;
   }
 
@@ -71,6 +73,10 @@ export class IABookmarksList extends LitElement {
         colorId,
       },
     }));
+  }
+
+  emitAddBookmark() {
+    this.dispatchEvent(new CustomEvent('addBookmark'));
   }
 
   editBookmark(e, bookmark) {
@@ -140,6 +146,7 @@ export class IABookmarksList extends LitElement {
       <ul>
         ${this.bookmarks.length ? repeat(this.bookmarks, bookmark => bookmark.id, this.bookmarkItem.bind(this)) : nothing}
       </ul>
+      ${this.renderAddBookmarkButton ? html`<button class="button" @click=${this.emitAddBookmark}>Add bookmark</button>` : nothing}
     `;
   }
 }

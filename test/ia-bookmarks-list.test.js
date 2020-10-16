@@ -110,6 +110,17 @@ describe('<ia-bookmarks-list>', () => {
     expect(response).to.exist;
   });
 
+  it('emits a custom event when the add bookmark button is clicked', async () => {
+    const el = await fixture(container(bookmarks));
+
+    setTimeout(() => (
+      el.shadowRoot.querySelector('.button').click()
+    ));
+    const response = await oneEvent(el, 'addBookmark');
+
+    expect(response).to.exist;
+  });
+
   it('sets editedBookmark when an edit button is clicked', async () => {
     const el = await fixture(container(bookmarks));
     const prevState = el.editedBookmark;
@@ -168,5 +179,16 @@ describe('<ia-bookmarks-list>', () => {
     await el.updateComplete;
 
     expect(el.shadowRoot.querySelector('header')).to.exist;
+  });
+
+  it('renders an optional add bookmark button', async () => {
+    const el = await fixture(container(bookmarks));
+
+    expect(el.shadowRoot.querySelector('.button')).to.exist;
+
+    el.renderAddBookmarkButton = false;
+    await el.updateComplete;
+
+    expect(el.shadowRoot.querySelector('.button')).not.to.exist;
   });
 });

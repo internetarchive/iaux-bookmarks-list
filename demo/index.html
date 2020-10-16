@@ -28,6 +28,7 @@
       --activeBookmark: #538bc5;
       --bookmarkThumbWidth: 37px;
       --loadingPagePlaceholder: #fefdeb;
+      --createButtonColor: #538bc5;
     }
 
     html {
@@ -147,6 +148,10 @@
 
     bookmarksList.addEventListener('bookmarkColorChanged', ({ detail }) => {
       console.log(`Bookmark ${detail.bookmarkId} color changed to ${detail.colorId}`);
+    });
+
+    bookmarksList.addEventListener('addBookmark', () => {
+      console.log('Add bookmark button clicked');
     });
 
     const bookmarksMenu = {

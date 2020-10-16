@@ -4,7 +4,7 @@ export default css`
 :host {
   display: block;
   height: 100%;
-  padding: 0 1rem;
+  padding: 0 1rem 2rem 1rem;
   overflow-y: auto;
   box-sizing: border-box;
   color: var(--primaryTextColor);
@@ -53,7 +53,7 @@ p {
   grid-column: 1 / 4;
 }
 
-button {
+li button {
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
@@ -68,6 +68,19 @@ button {
 
 button:focus {
   outline: none;
+}
+
+.button {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: .5rem 1rem;
+  box-sizing: border-box;
+  font: normal 1.3rem "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--primaryTextColor);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--createButtonColor);
 }
 
 ia-bookmark-edit {

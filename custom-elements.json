@@ -30,6 +30,12 @@
           "default": "{}"
         },
         {
+          "name": "renderAddBookmarkButton",
+          "type": "Boolean",
+          "description": "A toggle for an add bookmark button",
+          "default": "true"
+        },
+        {
           "name": "renderHeader",
           "type": "Boolean",
           "description": "A toggle for header rendering",
@@ -90,6 +96,10 @@
             "description": "The color id"
           }
         ]
+      }, {
+        "name": "addBookmark",
+        "description": "Click event for add bookmark button",
+        "parameters": []
       }],
       "slots": [],
       "cssProperties": [
@@ -104,6 +114,10 @@
         }, {
           "name": "--loadingPagePlaceholder",
           "description": "Background color of page thumbnail",
+          "type": "Color"
+        }, {
+          "name": "--createButtonColor",
+          "description": "Background color of add bookmark button",
           "type": "Color"
         }
       ]
