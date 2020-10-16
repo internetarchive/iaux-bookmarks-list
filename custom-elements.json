@@ -12,10 +12,22 @@
           "default": "undefined"
         },
         {
+          "name": "bookmarkColors",
+          "type": "Array",
+          "description": "An array of objects used to render bookmark color options",
+          "default": "[]"
+        },
+        {
           "name": "bookmarks",
           "type": "Array",
           "description": "The bookmarks to be rendered",
           "default": "[]"
+        },
+        {
+          "name": "editedBookmark",
+          "type": "Object",
+          "description": "The bookmark object currently being edited",
+          "default": "{}"
         },
         {
           "name": "renderHeader",
@@ -44,6 +56,40 @@
             "description": "The bookmark record selected"
           }
         ]
+      }, {
+        "name": "saveBookmark",
+        "description": "Submit action for the edit form",
+        "parameters": [
+          {
+            "name": "bookmark",
+            "type": "Object",
+            "description": "The updated bookmark record"
+          }
+        ]
+      }, {
+        "name": "deleteBookmark",
+        "description": "Click action for delete button",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "Number",
+            "description": "The bookmark id"
+          }
+        ]
+      }, {
+        "name": "bookmarkColorChanged",
+        "description": "Change event for bookmark colors radios",
+        "parameters": [
+          {
+            "name": "bookmarkId",
+            "type": "Number",
+            "description": "The bookmark id"
+          }, {
+            "name": "colorId",
+            "type": "Number",
+            "description": "The color id"
+          }
+        ]
       }],
       "slots": [],
       "cssProperties": [
@@ -55,6 +101,10 @@
           "name": "--bookmarkThumbWidth",
           "description": "Thumbnail image width",
           "type": "Number"
+        }, {
+          "name": "--loadingPagePlaceholder",
+          "description": "Background color of page thumbnail",
+          "type": "Color"
         }
       ]
     }

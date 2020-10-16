@@ -77,6 +77,74 @@ describe('<ia-bookmarks-list>', () => {
     expect(response).to.exist;
   });
 
+  it('emits a saveBookmark event', async () => {
+    const el = await fixture(container(bookmarks));
+
+    setTimeout(() => (
+      el.emitSaveBookmark(bookmarks[0])
+    ));
+    const response = await oneEvent(el, 'saveBookmark');
+
+    expect(response).to.exist;
+  });
+
+  it('emits a deleteBookmark event', async () => {
+    const el = await fixture(container(bookmarks));
+
+    setTimeout(() => (
+      el.emitDeleteBookmark(bookmarks[0].id)
+    ));
+    const response = await oneEvent(el, 'deleteBookmark');
+
+    expect(response).to.exist;
+  });
+
+  it('emits a bookmarkColorChanged event', async () => {
+    const el = await fixture(container(bookmarks));
+
+    setTimeout(() => (
+      el.emitBookmarkColorChanged({ detail: { bookmarkId: 0, colorId: 0 } })
+    ));
+    const response = await oneEvent(el, 'bookmarkColorChanged');
+
+    expect(response).to.exist;
+  });
+
+  it('sets editedBookmark when an edit button is clicked', async () => {
+    const el = await fixture(container(bookmarks));
+    const prevState = el.editedBookmark;
+
+    el.shadowRoot.querySelector('li button').click();
+    await el.updateComplete;
+
+    expect(el.editedBookmark).not.to.equal(prevState);
+    expect(el.editedBookmark.page).to.equal(bookmarks[0].page);
+  });
+
+  it('resets editedBookmark when saveBookmark callback called', async () => {
+    const el = await fixture(container(bookmarks));
+
+    [el.editedBookmark] = bookmarks;
+    await el.updateComplete;
+    el.saveBookmark({ detail: { bookmark: bookmarks[0] } });
+    await el.updateComplete;
+
+    expect(el.editedBookmark).not.to.equal(bookmarks[0]);
+    expect(el.editedBookmark).not.to.have.keys(['page', 'thumbnail', 'id']);
+  });
+
+  it('resets editedBookmark when deleteBookmark callback called', async () => {
+    const el = await fixture(container(bookmarks));
+
+    [el.editedBookmark] = bookmarks;
+    await el.updateComplete;
+    el.deleteBookmark({ detail: { id: bookmarks[0].id } });
+    await el.updateComplete;
+
+    expect(el.editedBookmark).not.to.equal(bookmarks[0]);
+    expect(el.editedBookmark).not.to.have.keys(['page', 'thumbnail', 'id']);
+  });
+
   it('renders the bookmarks count', async () => {
     const el = await fixture(container([bookmarks[0]]));
     const bookmarksCount = await fixture(el.bookmarksCount);

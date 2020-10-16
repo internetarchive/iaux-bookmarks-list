@@ -3,7 +3,10 @@ import { css } from 'lit-element';
 export default css`
 :host {
   display: block;
+  height: 100%;
   padding: 0 1rem;
+  overflow-y: auto;
+  box-sizing: border-box;
   color: var(--primaryTextColor);
   background: var(--activeButtonBg);
 }
@@ -31,6 +34,8 @@ li {
 img {
   display: block;
   width: var(--bookmarkThumbWidth);
+  min-height: calc(var(--bookmarkThumbWidth) * 1.55);
+  background: var(--loadingPagePlaceholder);
 }
 
 .active {
@@ -59,5 +64,18 @@ button {
   cursor: pointer;
   --iconWidth: 20px;
   --iconHeight: 20px;
+}
+
+button:focus {
+  outline: none;
+}
+
+ia-bookmark-edit {
+  --blueBookmarkColor: #0023f5;
+  --redBookmarkColor: #eb3223;
+  --greenBookmarkColor: #75ef4c;
+  --saveButtonColor: #538bc5;
+  --deleteButtonColor: #d33630;
+  grid-column: 1 / 4;
 }
 `;

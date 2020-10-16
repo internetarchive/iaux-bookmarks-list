@@ -2,6 +2,7 @@ import { nothing } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { html, LitElement } from 'lit-element';
+import '@internetarchive/ia-bookmark-edit/ia-bookmark-edit';
 import '@internetarchive/icon-edit-pencil/icon-edit-pencil';
 import bookmarksListCSS from './styles/ia-bookmarks-list.js';
 
@@ -13,7 +14,9 @@ export class IABookmarksList extends LitElement {
   static get properties() {
     return {
       activeBookmarkID: { type: Number },
+      bookmarkColors: { type: Array },
       bookmarks: { type: Array },
+      editedBookmark: { type: Object },
       renderHeader: { type: Boolean },
     };
   }
@@ -21,12 +24,13 @@ export class IABookmarksList extends LitElement {
   constructor() {
     super();
     this.activeBookmarkID = undefined;
+    this.bookmarkColors = [];
     this.bookmarks = [];
+    this.editedBookmark = {};
     this.renderHeader = false;
   }
 
   emitEditEvent(e, bookmark) {
-    e.stopPropagation();
     this.dispatchEvent(new CustomEvent('bookmarkEdited', {
       detail: {
         bookmark,
@@ -43,7 +47,51 @@ export class IABookmarksList extends LitElement {
     }));
   }
 
+  emitSaveBookmark(bookmark) {
+    this.dispatchEvent(new CustomEvent('saveBookmark', {
+      detail: {
+        bookmark,
+      },
+    }));
+  }
+
+  emitDeleteBookmark(id) {
+    this.dispatchEvent(new CustomEvent('deleteBookmark', {
+      detail: {
+        id,
+      },
+    }));
+  }
+
+  emitBookmarkColorChanged({ detail }) {
+    const { bookmarkId, colorId } = detail;
+    this.dispatchEvent(new CustomEvent('bookmarkColorChanged', {
+      detail: {
+        bookmarkId,
+        colorId,
+      },
+    }));
+  }
+
+  editBookmark(e, bookmark) {
+    this.emitEditEvent(e, bookmark);
+    this.editedBookmark = bookmark;
+  }
+
+  saveBookmark({ detail }) {
+    const { bookmark } = detail;
+    this.editedBookmark = {};
+    this.emitSaveBookmark(bookmark);
+  }
+
+  deleteBookmark({ detail }) {
+    const { id } = detail;
+    this.editedBookmark = {};
+    this.emitDeleteBookmark(id);
+  }
+
   bookmarkItem(bookmark) {
+    const editMode = this.editedBookmark.id === bookmark.id;
     return html`
       <li
         @click=${() => this.emitSelectedEvent(bookmark)}
@@ -51,9 +99,24 @@ export class IABookmarksList extends LitElement {
       >
         <img src=${bookmark.thumbnail} />
         <h4>Page ${bookmark.page}</h4>
-        <button @click=${e => this.emitEditEvent(e, bookmark)} title="Edit this bookmark"><ia-icon-edit-pencil></ia-icon-edit-pencil></button>
-        ${bookmark.note ? html`<p>${bookmark.note}</p>` : nothing}
+        <button @click=${e => this.editBookmark(e, bookmark)} title="Edit this bookmark"><ia-icon-edit-pencil></ia-icon-edit-pencil></button>
+        ${!editMode && bookmark.note ? html`<p>${bookmark.note}</p>` : nothing}
+        ${editMode ? this.editBookmarkComponent : nothing}
       </li>
+    `;
+  }
+
+  get editBookmarkComponent() {
+    const showBookmark = false;
+    return html`
+      <ia-bookmark-edit
+        .bookmark=${this.editedBookmark}
+        .bookmarkColors=${this.bookmarkColors}
+        .showBookmark=${showBookmark}
+        @saveBookmark=${this.saveBookmark}
+        @deleteBookmark=${this.deleteBookmark}
+        @bookmarkColorChanged=${this.emitBookmarkColorChanged}
+      ></ia-bookmark-edit>
     `;
   }
 
