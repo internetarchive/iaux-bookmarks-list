@@ -123,13 +123,22 @@ describe('<ia-bookmarks-list>', () => {
 
   it('sets editedBookmark when an edit button is clicked', async () => {
     const el = await fixture(container(bookmarks));
-    const prevState = el.editedBookmark;
+    let prevState = el.editedBookmark;
 
     el.shadowRoot.querySelector('li button').click();
     await el.updateComplete;
 
     expect(el.editedBookmark).not.to.equal(prevState);
     expect(el.editedBookmark.page).to.equal(bookmarks[0].page);
+
+    // When clicking the same edit button while in edit mode, should toggle
+    // edit mode off and remove editedBookmark pointer
+    prevState = el.editedBookmark;
+    el.shadowRoot.querySelector('li button').click();
+    await el.updateComplete;
+
+    expect(el.editedBookmark).not.to.equal(prevState);
+    expect(el.editedBookmark.page).not.to.equal(bookmarks[0].page);
   });
 
   it('resets editedBookmark when saveBookmark callback called', async () => {

@@ -81,7 +81,7 @@ export class IABookmarksList extends LitElement {
 
   editBookmark(e, bookmark) {
     this.emitEditEvent(e, bookmark);
-    this.editedBookmark = bookmark;
+    this.editedBookmark = this.editedBookmark === bookmark ? {} : bookmark;
   }
 
   saveBookmark({ detail }) {
