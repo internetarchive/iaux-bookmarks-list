@@ -102,6 +102,7 @@ export class IABookmarksList extends LitElement {
       <li
         @click=${() => this.emitSelectedEvent(bookmark)}
         class=${classMap({ active: bookmark.id === this.activeBookmarkID })}
+        tabindex="0"
       >
         <img src=${bookmark.thumbnail} />
         <h4>Page ${bookmark.page}</h4>

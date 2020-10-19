@@ -66,10 +66,6 @@ li button {
   --iconHeight: 20px;
 }
 
-button:focus {
-  outline: none;
-}
-
 .button {
   -webkit-appearance: none;
   appearance: none;
