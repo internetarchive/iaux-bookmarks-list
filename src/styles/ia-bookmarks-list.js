@@ -27,8 +27,9 @@ li {
   grid-gap: .2rem 1rem;
   justify-content: space-between;
   align-items: center;
+  padding: 2px;
   cursor: pointer;
-  border: 5px solid transparent;
+  border: var(--activeBorderWidth) solid transparent;
 }
 
 img {

@@ -108,6 +108,10 @@
           "description": "Active bookmark border color",
           "type": "Color"
         }, {
+          "name": "--activeBorderWidth",
+          "description": "Active bookmark border width",
+          "type": "Number"
+        }, {
           "name": "--bookmarkThumbWidth",
           "description": "Thumbnail image width",
           "type": "Number"
