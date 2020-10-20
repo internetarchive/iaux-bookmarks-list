@@ -19,14 +19,17 @@
       --animationTiming: .25s;
       --iconFillColor: #fff;
       --iconStrokeColor: #fff;
-      --iconWidth: 40px;
-      --iconHeight: 40px;
+      --iconWidth: 18px;
+      --iconHeight: 18px;
       --activeButtonBg: #282828;
       --closeMenuIconWidth: 20px;
       --closeMenuIconHeight: 20px;
 
       --activeBookmark: #538bc5;
+      --activeBorderWidth: 2px;
       --bookmarkThumbWidth: 37px;
+      --loadingPagePlaceholder: #fefdeb;
+      --createButtonColor: #538bc5;
     }
 
     html {
@@ -112,10 +115,21 @@
       note: 'Interesting quote here regarding the division of labor',
     }];
 
+    const bookmarkColors = [{
+      id: 0,
+      className: 'blue',
+    }, {
+      id: 1,
+      className: 'red',
+    }, {
+      id: 2,
+      className: 'green',
+    }];
+
     const menuSlider = document.createElement('ia-menu-slider');
     const bookmarksList = document.createElement('ia-bookmarks-list');
-    bookmarksList.renderHeader = true;
     bookmarksList.bookmarks = bookmarks;
+    bookmarksList.bookmarkColors = bookmarkColors;
     bookmarksList.addEventListener('bookmarkEdited', ({ detail }) => {
       console.log(`Bookmark ${detail.bookmark.id} edited`);
     });
@@ -124,11 +138,29 @@
       console.log(`Bookmark ${detail.bookmark.id} selected`);
     });
 
+    bookmarksList.addEventListener('saveBookmark', ({ detail }) => {
+      console.log(`Bookmark ${detail.bookmark.id} saved`);
+      console.table(detail.bookmark);
+    });
+
+    bookmarksList.addEventListener('deleteBookmark', ({ detail }) => {
+      console.log(`Bookmark ${detail.id} deleted`);
+    });
+
+    bookmarksList.addEventListener('bookmarkColorChanged', ({ detail }) => {
+      console.log(`Bookmark ${detail.bookmarkId} color changed to ${detail.colorId}`);
+    });
+
+    bookmarksList.addEventListener('addBookmark', () => {
+      console.log('Add bookmark button clicked');
+    });
+
     const bookmarksMenu = {
       icon: html`
-        <icon-bookmark style="margin: 15px 0 0 10px"></icon-bookmark>
+        <icon-bookmark style="--iconWidth: 16px; --iconHeight: 24px;"></icon-bookmark>
       `,
       label: 'Bookmarks',
+      menuDetails: `(${bookmarks.length})`,
       id: 'bookmarks',
       component: bookmarksList,
     };
