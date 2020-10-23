@@ -16,7 +16,7 @@ small {
 }
 
 ul {
-  padding: 0 0 2rem 0;
+  padding: var(--activeBorderWidth) 0 2rem 0;
   margin: 0;
   list-style: none;
 }
@@ -27,7 +27,8 @@ li {
   grid-gap: .2rem 1rem;
   justify-content: space-between;
   align-items: center;
-  padding: 2px;
+  padding: .2rem;
+  margin-top: .2rem;
   cursor: pointer;
   border: var(--activeBorderWidth) solid transparent;
 }
