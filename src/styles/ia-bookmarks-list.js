@@ -8,6 +8,7 @@ export default css`
   box-sizing: border-box;
   color: var(--primaryTextColor);
   background: var(--activeButtonBg);
+  margin-bottom: 2rem;
 }
 
 small {
