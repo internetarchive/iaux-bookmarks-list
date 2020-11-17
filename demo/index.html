@@ -72,47 +72,60 @@
     import bookmarksController from './bookmarks_controller.js';
 
     const bookmarks = [{
-      id: 1,
-      thumbnail: '//placehold.it/320x496',
-      page: 'xii',
-    }, {
-      id: 2,
-      thumbnail: '//placehold.it/320x496/06c/fff',
-      page: 9,
       note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
-    }, {
-      id: 3,
+      color: 0,
+      id: '2',
+      leafNum: '2',
+      page: '-2-',
       thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-      page: 9,
-      note: 'Interesting quote here regarding the division of labor',
-    }, {
-      id: 4,
-      thumbnail: '//placehold.it/320x496',
-      page: 'xii',
-    }, {
-      id: 5,
-      thumbnail: '//placehold.it/320x496/06c/fff',
-      page: 9,
+    },
+    {
       note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
-    }, {
-      id: 6,
+      color: 0,
+      id: '51',
+      leafNum: '51',
+      page: 24,
       thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-      page: 9,
+    },
+    {
       note: 'Interesting quote here regarding the division of labor',
-    }, {
-      id: 7,
-      thumbnail: '//placehold.it/320x496',
-      page: 'xii',
-    }, {
-      id: 8,
+      color: 2,
+      id: '80',
+      leafNum: '80',
+      page: 53,
       thumbnail: '//placehold.it/320x496/06c/fff',
-      page: 9,
-      note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
-    }, {
-      id: 9,
-      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-      page: 9,
+    },
+    {
       note: 'Interesting quote here regarding the division of labor',
+      color: 0,
+      id: '86',
+      leafNum: '86',
+      page: 59,
+      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
+    },
+    {
+      note: '',
+      color: 2,
+      id: '87',
+      leafNum: '87',
+      page: 60,
+      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
+    },
+    {
+      note: '',
+      color: 1,
+      id: '139',
+      leafNum: '139',
+      page: 112,
+      thumbnail: '//placehold.it/320x496/06c/fff',
+    },
+    {
+      note: '',
+      color: 0,
+      id: '142',
+      leafNum: '142',
+      page: 115,
+      thumbnail: '//placehold.it/320x496/06c/fff',
     }];
 
     const bookmarkColors = [{
@@ -157,7 +170,7 @@
 
     const bookmarksMenu = {
       icon: html`
-        <icon-bookmark style="--iconWidth: 16px; --iconHeight: 24px;"></icon-bookmark>
+        <icon-bookmark style='--iconWidth: 20px; --iconHeight: 20px;'></icon-bookmark>
       `,
       label: 'Bookmarks',
       menuDetails: `(${bookmarks.length})`,
