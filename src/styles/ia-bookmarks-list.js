@@ -8,9 +8,6 @@ export default css`
   box-sizing: border-box;
   color: var(--primaryTextColor);
   background: var(--activeButtonBg);
-  --blueBookmarkColor: #0023f5;
-  --redBookmarkColor: #eb3223;
-  --greenBookmarkColor: #75ef4c;
 }
 
 small {
@@ -126,7 +123,7 @@ ul > li:first-child .separator {
 .separator {
   width: 98%;
   margin: .2rem auto;
-  background-color: #4b4b4b;
+  background-color: var(--bookmarkListSeparatorColor);
   height: 0.1rem;
 }
 `;
