@@ -30,6 +30,8 @@
       --bookmarkThumbWidth: 37px;
       --loadingPagePlaceholder: #fefdeb;
       --createButtonColor: #538bc5;
+      --bookmarkIconWidth: 16px;
+      --bookmarkIconHeight: 24px;
     }
 
     html {
@@ -170,7 +172,7 @@
 
     const bookmarksMenu = {
       icon: html`
-        <icon-bookmark style='--iconWidth: 20px; --iconHeight: 20px;'></icon-bookmark>
+        <icon-bookmark style='--iconWidth: var(--bookmarkIconWidth); --iconHeight: var(--bookmarkIconHeight);'></icon-bookmark>
       `,
       label: 'Bookmarks',
       menuDetails: `(${bookmarks.length})`,
