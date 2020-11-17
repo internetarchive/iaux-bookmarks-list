@@ -66,8 +66,8 @@ li button {
   border: none;
   background: transparent;
   cursor: pointer;
-  --iconWidth: 20px;
-  --iconHeight: 20px;
+  width: var(--iconWidth);
+  height: var(--iconHeight);
 }
 
 .button {
