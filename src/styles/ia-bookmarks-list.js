@@ -4,34 +4,39 @@ export default css`
 :host {
   display: block;
   height: 100%;
-  padding: 0 1rem 2rem 1rem;
   overflow-y: auto;
   box-sizing: border-box;
   color: var(--primaryTextColor);
   background: var(--activeButtonBg);
+  --blueBookmarkColor: #0023f5;
+  --redBookmarkColor: #eb3223;
+  --greenBookmarkColor: #75ef4c;
 }
 
 small {
   font-style: italic;
 }
 
-ul {
-  padding: var(--activeBorderWidth) 0 2rem 0;
-  margin: 0;
-  list-style: none;
+h4 {
+  margin: 0 0 .5rem 0;
+  font-size: 1.4rem;
+}
+h4 * {
+  display: inline-block;
+}
+h4 icon-bookmark {
+  vertical-align: bottom;
+}
+h4 span {
+  vertical-align: top;
+  padding-top: 1%;
 }
 
-li {
-  display: grid;
-  grid-template-columns: var(--bookmarkThumbWidth) 1fr auto;
-  grid-gap: .2rem 1rem;
-  justify-content: space-between;
-  align-items: center;
-  padding: .2rem;
-  margin-top: .2rem;
-  cursor: pointer;
-  border: var(--activeBorderWidth) solid transparent;
-  outline: none;
+p {
+  padding: 0;
+  margin: .5rem 0 0 0;
+  width: 98%;
+  overflow-wrap: break-word;
 }
 
 img {
@@ -41,38 +46,61 @@ img {
   background: var(--loadingPagePlaceholder);
 }
 
-.active {
-  border-color: var(--activeBookmark);
-}
-
-h4 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-p {
+ul {
+  margin: var(--activeBorderWidth) .5rem 2rem 0;
   padding: 0;
-  margin: 0;
-  grid-column: 1 / 4;
+  list-style: none;
 }
 
-li button {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
+li {
+  cursor: pointer;
   outline: none;
-  padding: 0;
-  border: none;
+  position: relative;
+}
+li .content {
+  border: var(--activeBorderWidth) solid transparent;
+  padding: 0.5rem 0px 0.5rem 0.2rem;
+}
+li .content.active {
+  border: var(--activeBorderWidth) solid var(--activeBookmark);
+}
+li button.edit {
+  padding: 0 .4rem 0 0;
   background: transparent;
   cursor: pointer;
-  width: var(--iconWidth);
-  height: var(--iconHeight);
+  height: 4rem;
+  width: 4rem;
+  position: absolute;
+  right: 0.2rem;
+  text-align: right;
+}
+li button.edit > * {
+  width: var(--iconWidth, 20px);
+  height: var(--iconHeight, 20px);
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
-.button {
+icon-bookmark {
+  width: var(--bookmarkIconWidth, 16px);
+  height: var(--bookmarkIconHeight, 24px);
+}
+icon-bookmark.blue {
+  --iconFillColor: var(--blueBookmarkColor, #0023f5);
+}
+icon-bookmark.red {
+  --iconFillColor: var(--redBookmarkColor, #eb3223);
+}
+icon-bookmark.green {
+  --iconFillColor: var(--greenBookmarkColor, #75ef4c);
+}
+
+button {
   -webkit-appearance: none;
   appearance: none;
+  outline: none;
+  background: transparent;
   padding: .5rem 1rem;
   box-sizing: border-box;
   font: normal 1.3rem "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -80,15 +108,25 @@ li button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+button.add-bookmark {
   background: var(--createButtonColor);
 }
 
 ia-bookmark-edit {
-  --blueBookmarkColor: #0023f5;
-  --redBookmarkColor: #eb3223;
-  --greenBookmarkColor: #75ef4c;
   --saveButtonColor: #538bc5;
   --deleteButtonColor: #d33630;
   grid-column: 1 / 4;
+}
+
+ul > li:first-child .separator {
+  display: none;
+}
+.separator {
+  width: 98%;
+  margin: .2rem auto;
+  background-color: #4b4b4b;
+  height: 0.1rem;
 }
 `;
