@@ -16,7 +16,7 @@ small {
 }
 
 h4 {
-  margin: 0 0 .5rem 0;
+  margin: 0;
   font-size: 1.4rem;
 }
 h4 * {
@@ -56,20 +56,21 @@ li {
   position: relative;
 }
 li .content {
-  border: var(--activeBorderWidth) solid transparent;
+  border: 0;
   padding: 1rem 0px 1rem 0.2rem;
 }
 li .content.active {
   border: var(--activeBorderWidth) solid var(--activeBookmark);
 }
 li button.edit {
-  padding: .2rem .4rem 0 0;
+  padding: 1.2rem 0.4rem 0px 0px;
   background: transparent;
   cursor: pointer;
   height: 4rem;
   width: 4rem;
   position: absolute;
   right: 0.2rem;
+  top: 0.2rem;
   text-align: right;
 }
 li button.edit > * {
@@ -111,7 +112,7 @@ button {
 button.add-bookmark {
   background: var(--createButtonColor);
   height: 3rem;
-  border: 1px solid;
+  border: 1px solid var(--createButtonBorderColor);
   margin-left: 0.5rem;
 }
 
