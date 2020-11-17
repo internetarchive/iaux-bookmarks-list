@@ -164,6 +164,7 @@ export class IABookmarksList extends LitElement {
       ${this.renderHeader ? this.headerSection : nothing}
       <ul>
         ${this.bookmarks.length ? repeat(this.bookmarks, bookmark => bookmark.id, this.bookmarkItem.bind(this)) : nothing}
+        <div class="separator"></div>
       </ul>
       ${this.renderAddBookmarkButton ? html`<button class="add-bookmark" @click=${this.emitAddBookmark}>Add bookmark</button>` : nothing}
     `;

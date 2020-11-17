@@ -44,7 +44,7 @@ img {
 }
 
 ul {
-  margin: var(--activeBorderWidth) .5rem 2rem 0;
+  margin: var(--activeBorderWidth) 0.5rem 1rem 0;
   padding: 0;
   list-style: none;
 }
@@ -109,6 +109,9 @@ button {
 
 button.add-bookmark {
   background: var(--createButtonColor);
+  height: 3rem;
+  border: 1px solid;
+  margin-left: 0.5rem;
 }
 
 ia-bookmark-edit {
