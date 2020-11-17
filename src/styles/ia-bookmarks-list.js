@@ -57,13 +57,13 @@ li {
 }
 li .content {
   border: var(--activeBorderWidth) solid transparent;
-  padding: 0.5rem 0px 0.5rem 0.2rem;
+  padding: 1rem 0px 1rem 0.2rem;
 }
 li .content.active {
   border: var(--activeBorderWidth) solid var(--activeBookmark);
 }
 li button.edit {
-  padding: 0 .4rem 0 0;
+  padding: .2rem .4rem 0 0;
   background: transparent;
   cursor: pointer;
   height: 4rem;
