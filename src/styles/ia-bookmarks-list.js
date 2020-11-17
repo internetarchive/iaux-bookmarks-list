@@ -31,6 +31,7 @@ li {
   margin-top: .2rem;
   cursor: pointer;
   border: var(--activeBorderWidth) solid transparent;
+  outline: none;
 }
 
 img {
@@ -60,6 +61,7 @@ li button {
   appearance: none;
   width: 20px;
   height: 20px;
+  outline: none;
   padding: 0;
   border: none;
   background: transparent;
