@@ -1,8 +1,8 @@
 {
   "name": "@internetarchive/ia-bookmarks-list",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Bookmarks list component for ia-menu-slider",
-  "author": "Shane Riley, Internet Archive",
+  "author": "Shane Riley, Isa Herico Velasco, Internet Archive",
   "license": "AGPL-3.0-only",
   "main": "index.js",
   "module": "index.js",
