@@ -1,6 +1,5 @@
 import { nothing } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat.js';
-import { classMap } from 'lit-html/directives/class-map.js';
 import { html, LitElement } from 'lit-element';
 import '@internetarchive/ia-bookmark-edit/ia-bookmark-edit';
 import '@internetarchive/icon-edit-pencil/icon-edit-pencil';
@@ -15,6 +14,7 @@ export class IABookmarksList extends LitElement {
     return {
       activeBookmarkID: { type: Number },
       bookmarkColors: { type: Array },
+      defaultBookmarkColor: { type: Object },
       bookmarks: { type: Array },
       editedBookmark: { type: Object },
       renderAddBookmarkButton: { type: Boolean },
@@ -26,6 +26,7 @@ export class IABookmarksList extends LitElement {
     super();
     this.activeBookmarkID = undefined;
     this.bookmarkColors = [];
+    this.defaultBookmarkColor = {};
     this.bookmarks = [];
     this.editedBookmark = {};
     this.renderAddBookmarkButton = true;
@@ -96,19 +97,35 @@ export class IABookmarksList extends LitElement {
     this.emitDeleteBookmark(id);
   }
 
+  bookmarkColorInfo(colorVal = 0) {
+    return this.bookmarkColors.find(labelInfo => labelInfo?.id === colorVal);
+  }
+
   bookmarkItem(bookmark) {
     const editMode = this.editedBookmark.id === bookmark.id;
+    const { className } = this.bookmarkColorInfo(bookmark.color);
+    const activeClass = bookmark.id === this.activeBookmarkID ? 'active' : '';
     return html`
       <li
         @click=${() => this.emitSelectedEvent(bookmark)}
-        class=${classMap({ active: bookmark.id === this.activeBookmarkID })}
         tabindex="0"
       >
-        <img src=${bookmark.thumbnail} />
-        <h4>Page ${bookmark.page}</h4>
-        <button @click=${e => this.editBookmark(e, bookmark)} title="Edit this bookmark"><ia-icon-edit-pencil></ia-icon-edit-pencil></button>
-        ${!editMode && bookmark.note ? html`<p>${bookmark.note}</p>` : nothing}
-        ${editMode ? this.editBookmarkComponent : nothing}
+        <div class="separator"></div>
+        <div class="content ${activeClass}">
+          <button
+            class="edit"
+            @click=${e => this.editBookmark(e, bookmark)}
+            title="Edit this bookmark"
+          >
+            <ia-icon-edit-pencil></ia-icon-edit-pencil>
+          </button>
+          <h4>
+            <icon-bookmark class=${className}></icon-bookmark>
+            <span> Page ${bookmark.page}</span>
+          </h4>
+          ${!editMode && bookmark.note ? html`<p>${bookmark.note}</p>` : nothing}
+          ${editMode ? this.editBookmarkComponent : nothing}
+        </div>
       </li>
     `;
   }
@@ -119,6 +136,7 @@ export class IABookmarksList extends LitElement {
       <ia-bookmark-edit
         .bookmark=${this.editedBookmark}
         .bookmarkColors=${this.bookmarkColors}
+        .defaultBookmarkColor=${this.defaultBookmarkColor}
         .showBookmark=${showBookmark}
         @saveBookmark=${this.saveBookmark}
         @deleteBookmark=${this.deleteBookmark}
@@ -146,8 +164,9 @@ export class IABookmarksList extends LitElement {
       ${this.renderHeader ? this.headerSection : nothing}
       <ul>
         ${this.bookmarks.length ? repeat(this.bookmarks, bookmark => bookmark.id, this.bookmarkItem.bind(this)) : nothing}
+        <div class="separator"></div>
       </ul>
-      ${this.renderAddBookmarkButton ? html`<button class="button" @click=${this.emitAddBookmark}>Add bookmark</button>` : nothing}
+      ${this.renderAddBookmarkButton ? html`<button class="add-bookmark" @click=${this.emitAddBookmark}>Add bookmark</button>` : nothing}
     `;
   }
 }

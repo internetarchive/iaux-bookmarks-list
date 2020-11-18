@@ -123,6 +123,14 @@
           "name": "--createButtonColor",
           "description": "Background color of add bookmark button",
           "type": "Color"
+        }, {
+          "name": "--createButtonBorderColor",
+          "description": "halo around create bookmark button",
+          "type": "Color"
+        }, {
+          "name": "--bookmarkListSeparatorColor",
+          "description": "separates bookmarks list",
+          "type": "Color"
         }
       ]
     }
