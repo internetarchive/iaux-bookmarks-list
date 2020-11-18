@@ -14,6 +14,7 @@ export class IABookmarksList extends LitElement {
     return {
       activeBookmarkID: { type: Number },
       bookmarkColors: { type: Array },
+      defaultBookmarkColor: { type: Object },
       bookmarks: { type: Array },
       editedBookmark: { type: Object },
       renderAddBookmarkButton: { type: Boolean },
@@ -25,6 +26,7 @@ export class IABookmarksList extends LitElement {
     super();
     this.activeBookmarkID = undefined;
     this.bookmarkColors = [];
+    this.defaultBookmarkColor = {};
     this.bookmarks = [];
     this.editedBookmark = {};
     this.renderAddBookmarkButton = true;
@@ -96,10 +98,7 @@ export class IABookmarksList extends LitElement {
   }
 
   bookmarkColorInfo(colorVal = 0) {
-    return this.bookmarkColors.find((labelInfo) => {
-      console.log('labelInfo', labelInfo);
-      return labelInfo?.id === colorVal;
-    });
+    return this.bookmarkColors.find(labelInfo => labelInfo?.id === colorVal);
   }
 
   bookmarkItem(bookmark) {
@@ -137,6 +136,7 @@ export class IABookmarksList extends LitElement {
       <ia-bookmark-edit
         .bookmark=${this.editedBookmark}
         .bookmarkColors=${this.bookmarkColors}
+        .defaultBookmarkColor=${this.defaultBookmarkColor}
         .showBookmark=${showBookmark}
         @saveBookmark=${this.saveBookmark}
         @deleteBookmark=${this.deleteBookmark}
