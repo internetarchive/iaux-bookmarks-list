@@ -8,10 +8,6 @@ import { IABookmarksList } from '../src/ia-bookmarks-list.js';
 
 customElements.define('ia-bookmarks-list', IABookmarksList);
 
-const container = (bookmarks = []) => (
-  html`<ia-bookmarks-list .bookmarks=${bookmarks}></ia-bookmarks-list>`
-);
-
 const bookmarks = [{
   id: 1,
   thumbnail: '//placehold.it/37x46',
@@ -28,6 +24,21 @@ const bookmarks = [{
   note: 'Interesting quote here regarding the division of labor',
 }];
 
+const bookmarkColors = [{
+  id: 0,
+  className: 'blue',
+}, {
+  id: 1,
+  className: 'red',
+}, {
+  id: 2,
+  className: 'green',
+}];
+
+const container = (bookmarksSet = []) => (
+  html`<ia-bookmarks-list .bookmarks=${bookmarksSet} .bookmarkColors=${bookmarkColors}></ia-bookmarks-list>`
+);
+
 describe('<ia-bookmarks-list>', () => {
   it('sets default properties', async () => {
     const el = await fixture(container(bookmarks));
@@ -35,12 +46,6 @@ describe('<ia-bookmarks-list>', () => {
     expect(el.bookmarks).to.equal(bookmarks);
     expect(el.activeBookmarkID).to.be.undefined;
     expect(el.renderHeader).to.be.false;
-  });
-
-  it('renders bookmarks that contain thumbnails', async () => {
-    const el = await fixture(container(bookmarks));
-
-    expect(el.shadowRoot.querySelector('img').getAttribute('src')).to.equal(bookmarks[0].thumbnail);
   });
 
   it('renders bookmarks that contain page numbers', async () => {
@@ -114,7 +119,7 @@ describe('<ia-bookmarks-list>', () => {
     const el = await fixture(container(bookmarks));
 
     setTimeout(() => (
-      el.shadowRoot.querySelector('.button').click()
+      el.shadowRoot.querySelector('.add-bookmark').click()
     ));
     const response = await oneEvent(el, 'addBookmark');
 
@@ -193,11 +198,11 @@ describe('<ia-bookmarks-list>', () => {
   it('renders an optional add bookmark button', async () => {
     const el = await fixture(container(bookmarks));
 
-    expect(el.shadowRoot.querySelector('.button')).to.exist;
+    expect(el.shadowRoot.querySelector('.add-bookmark')).to.exist;
 
     el.renderAddBookmarkButton = false;
     await el.updateComplete;
 
-    expect(el.shadowRoot.querySelector('.button')).not.to.exist;
+    expect(el.shadowRoot.querySelector('.add-bookmark')).not.to.exist;
   });
 });
