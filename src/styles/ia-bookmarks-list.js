@@ -3,7 +3,6 @@ import { css } from 'lit-element';
 export default css`
 :host {
   display: block;
-  height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
   color: var(--primaryTextColor);
@@ -119,7 +118,7 @@ button.add-bookmark {
 ia-bookmark-edit {
   --saveButtonColor: #538bc5;
   --deleteButtonColor: #d33630;
-  grid-column: 1 / 4;
+  margin: .5rem .5rem 0 .6rem;
 }
 
 ul > li:first-child .separator {
