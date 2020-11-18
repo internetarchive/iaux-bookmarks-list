@@ -31,6 +31,10 @@
       --loadingPagePlaceholder: #fefdeb;
       --createButtonColor: #194880;
       --createButtonBorderColor: #c5d1df;
+      --saveButtonColor: #194880;
+      --saveButtonBorderColor: #c5d1df;
+      --deleteButtonColor: #e51c26;
+      --deleteButtonBorderColor: #f8c6c8;
       --bookmarkIconWidth: 16px;
       --bookmarkIconHeight: 24px;
       --bookmarkListSeparatorColor: #151515;
@@ -150,6 +154,7 @@
     const bookmarksList = document.createElement('ia-bookmarks-list');
     bookmarksList.bookmarks = bookmarks;
     bookmarksList.bookmarkColors = bookmarkColors;
+    bookmarksList.defaultBookmarkColor = bookmarkColors[0];
     bookmarksList.addEventListener('bookmarkEdited', ({ detail }) => {
       console.log(`Bookmark ${detail.bookmark.id} edited`);
     });
