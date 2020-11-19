@@ -155,12 +155,16 @@
     bookmarksList.bookmarks = bookmarks;
     bookmarksList.bookmarkColors = bookmarkColors;
     bookmarksList.defaultBookmarkColor = bookmarkColors[0];
+    bookmarksList.disableAddBookmarkButton = false;
     bookmarksList.addEventListener('bookmarkEdited', ({ detail }) => {
       console.log(`Bookmark ${detail.bookmark.id} edited`);
     });
 
     bookmarksList.addEventListener('bookmarkSelected', ({ detail }) => {
+      bookmarksList.disableAddBookmarkButton = true;
       console.log(`Bookmark ${detail.bookmark.id} selected`);
+
+      setTimeout(() => bookmarksList.disableAddBookmarkButton = false, 800);
     });
 
     bookmarksList.addEventListener('saveBookmark', ({ detail }) => {
