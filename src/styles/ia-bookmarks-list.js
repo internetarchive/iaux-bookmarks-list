@@ -55,14 +55,14 @@ li {
   position: relative;
 }
 li .content {
-  border: 0;
-  padding: 1rem 0px 1rem 0.2rem;
+  border: var(--activeBorderWidth) solid transparent;
+  padding: .2rem 0 .4rem .2rem;
 }
 li .content.active {
   border: var(--activeBorderWidth) solid var(--activeBookmark);
 }
 li button.edit {
-  padding: 1.2rem 0.4rem 0px 0px;
+  padding: .5rem .2rem 0 0;
   background: transparent;
   cursor: pointer;
   height: 4rem;
@@ -126,7 +126,7 @@ ul > li:first-child .separator {
 }
 .separator {
   width: 98%;
-  margin: .2rem auto;
+  margin: .1rem auto;
   background-color: var(--bookmarkListSeparatorColor);
   height: 0.1rem;
 }
