@@ -205,4 +205,14 @@ describe('<ia-bookmarks-list>', () => {
 
     expect(el.shadowRoot.querySelector('.add-bookmark')).not.to.exist;
   });
+
+  it('can toggle disable behavior of add bookmark button', async () => {
+    const el = await fixture(container(bookmarks));
+    expect(el.shadowRoot.querySelector('.add-bookmark').getAttribute('disabled')).to.be.null;
+
+    el.disableAddBookmarkButton = true;
+    await el.updateComplete;
+
+    expect(el.shadowRoot.querySelector('.add-bookmark').getAttribute('disabled')).to.equal('disabled');
+  });
 });

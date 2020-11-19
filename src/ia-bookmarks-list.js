@@ -166,7 +166,7 @@ export class IABookmarksList extends LitElement {
   }
 
   get addBookmarkDisabledButton() {
-    return html`<button disabled class="add-bookmark" @click=${this.emitAddBookmark}>Add bookmark</button>`;
+    return html`<button disabled="disabled" class="add-bookmark" @click=${this.emitAddBookmark}>Add bookmark</button>`;
   }
 
   render() {
