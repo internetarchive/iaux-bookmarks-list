@@ -108,6 +108,10 @@ button {
   cursor: pointer;
 }
 
+button.add-bookmark:disabled {
+  opacity: .5;
+}
+
 button.add-bookmark {
   background: var(--createButtonColor);
   height: 3rem;
@@ -118,7 +122,7 @@ button.add-bookmark {
 ia-bookmark-edit {
   --saveButtonColor: #538bc5;
   --deleteButtonColor: #d33630;
-  margin: .5rem .5rem 0 .6rem;
+  margin: .5rem .5rem .3rem .6rem;
 }
 
 ul > li:first-child .separator {
