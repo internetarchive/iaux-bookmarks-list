@@ -1,6 +1,6 @@
 {
   "name": "@internetarchive/ia-bookmarks-list",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "description": "Bookmarks list component for ia-menu-slider",
   "author": "Shane Riley, Isa Herico Velasco, Internet Archive",
   "license": "AGPL-3.0-only",
@@ -19,7 +19,7 @@
     "test:watch": "karma start --auto-watch=true --single-run=false"
   },
   "dependencies": {
-    "@internetarchive/ia-bookmark-edit": "^0.1.9",
+    "@internetarchive/ia-bookmark-edit": "^0.1.11",
     "@internetarchive/icon-bookmark": "^1.1.3",
     "@internetarchive/icon-collapse-sidebar": "^1.1.0",
     "@internetarchive/icon-edit-pencil": "^1.1.5",

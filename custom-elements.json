@@ -36,6 +36,12 @@
           "default": "true"
         },
         {
+          "name": "disableAddBookmarkButton",
+          "type": "Boolean",
+          "description": "A toggle to disable add bookmark button",
+          "default": "false"
+        },
+        {
           "name": "renderHeader",
           "type": "Boolean",
           "description": "A toggle for header rendering",
