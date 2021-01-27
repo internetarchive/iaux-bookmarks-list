@@ -15,9 +15,11 @@ export class IABookmarksList extends LitElement {
       activeBookmarkID: { type: Number },
       bookmarkColors: { type: Array },
       defaultBookmarkColor: { type: Object },
-      bookmarks: { type: Array },
+      bookmarks: { type: Object },
       editedBookmark: { type: Object },
       renderHeader: { type: Boolean },
+
+      sortedBookmarks: { type: Array },
     };
   }
 
@@ -26,9 +28,20 @@ export class IABookmarksList extends LitElement {
     this.activeBookmarkID = undefined;
     this.bookmarkColors = [];
     this.defaultBookmarkColor = {};
-    this.bookmarks = [];
+    this.bookmarks = {};
+    this.sortedBookmarks = [];
     this.editedBookmark = {};
     this.renderHeader = false;
+  }
+
+  firstUpdated() {
+    this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
+    console.log('FIRST UPDATED', this.sortedBookmarks);
+  }
+
+  updated(changed) {
+    console.log('canged', changed);
+    // this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
   }
 
   emitEditEvent(e, bookmark) {
@@ -157,11 +170,24 @@ export class IABookmarksList extends LitElement {
     </header>`;
   }
 
+  sortBookmarks() {
+    const sortedKeys = Object.keys(this.bookmarks).sort((a, b) => {
+      if (+a > +b) { return 1; }
+      if (+a < +b) { return -1; }
+      return 0;
+    });
+
+    const sortedBookmarks = sortedKeys.map(key => this.bookmarks[key]);
+
+    return sortedBookmarks;
+  }
+
   render() {
+    console.log('RENDER, sortedbookmarker', this.sortedBookmarks);
     return html`
       ${this.renderHeader ? this.headerSection : nothing}
       <ul>
-        ${this.bookmarks.length ? repeat(this.bookmarks, bookmark => bookmark.id, this.bookmarkItem.bind(this)) : nothing}
+        ${this.sortedBookmarks.length ? repeat(this.sortedBookmarks, bookmark => bookmark.id, this.bookmarkItem.bind(this)) : nothing}
         <div class="separator"></div>
       </ul>
     `;

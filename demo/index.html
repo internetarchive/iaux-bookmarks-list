@@ -82,62 +82,48 @@
     import '@internetarchive/ia-menu-slider/ia-menu-slider';
     import bookmarksController from './bookmarks_controller.js';
 
-    const bookmarks = [{
-      note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
-      color: 0,
-      id: '2',
-      leafNum: '2',
-      page: '-2-',
-      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-    },
-    {
-      note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
-      color: 0,
-      id: '51',
-      leafNum: '51',
-      page: 24,
-      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-    },
-    {
-      note: 'Interesting quote here regarding the division of labor',
-      color: 2,
-      id: '80',
-      leafNum: '80',
-      page: 53,
-      thumbnail: '//placehold.it/320x496/06c/fff',
-    },
-    {
-      note: 'Interesting quote here regarding the division of labor',
-      color: 0,
-      id: '86',
-      leafNum: '86',
-      page: 59,
-      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-    },
-    {
-      note: '',
-      color: 2,
-      id: '87',
-      leafNum: '87',
-      page: 60,
-      thumbnail: '//placehold.it/320x496/e5e5e5/06c',
-    },
-    {
-      note: '',
-      color: 1,
-      id: '139',
-      leafNum: '139',
-      page: 112,
-      thumbnail: '//placehold.it/320x496/06c/fff',
-    },
-    {
-      note: '',
-      color: 0,
-      id: '142',
-      leafNum: '142',
-      page: 115,
-      thumbnail: '//placehold.it/320x496/06c/fff',
-    }];
+    const bookmarks = {
+      86: {
+        note: 'Interesting quote here regarding the division of labor',
+        color: 0,
+        id: '86',
+        leafNum: '86',
+        page: 59,
+        thumbnail: '//placehold.it/320x496/e5e5e5/06c',
+      },
+      51: {
+        note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
+        color: 0,
+        id: 51,
+        leafNum: 51,
+        page: 24,
+        thumbnail: '//placehold.it/320x496/e5e5e5/06c',
+      },
+      2: {
+        note: 'This is a long comment I left about this bookmark in order to test out the display in the panel on the side of the bookreader.',
+        color: 0,
+        id: 2,
+        leafNum: 2,
+        page: '-2-',
+        thumbnail: '//placehold.it/320x496/e5e5e5/06c',
+      },
+      80: {
+        note: 'Interesting quote here regarding the division of labor',
+        color: 2,
+        id: '80',
+        leafNum: '80',
+        page: 53,
+        thumbnail: '//placehold.it/320x496/06c/fff',
+      },
+      139: {
+        note: '',
+        color: 1,
+        id: 139,
+        leafNum: 139,
+        page: 112,
+        thumbnail: '//placehold.it/320x496/06c/fff',
+      },
+    };
 
     const bookmarkColors = [{
       id: 0,
