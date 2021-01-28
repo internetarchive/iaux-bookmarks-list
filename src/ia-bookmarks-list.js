@@ -36,13 +36,15 @@ export class IABookmarksList extends LitElement {
 
   firstUpdated() {
     this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
-    console.log('FIRST UPDATED', this.sortedBookmarks);
   }
 
   updated(changed) {
     const activeBookmarkChanged = changed.has('activeBookmarkID');
-    if (activeBookmarkChanged && (this.activeBookmarkID !== undefined)) { /* can be zero */
-      this.shadowRoot.querySelector('.active').scrollIntoView();
+    console.log('IA BOOKMARKS LIST UPDATED : activeBookmarkChanged ', activeBookmarkChanged);
+    console.log('IA BOOKMARKS LIST UPDATED : this.activeBookmarkChanged ', this.activeBookmarkID);
+
+    if (activeBookmarkChanged) { /* can be zero */
+      this.shadowRoot.querySelector('.content.active').scrollIntoView();
     }
     // this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
   }
