@@ -40,7 +40,10 @@ export class IABookmarksList extends LitElement {
   }
 
   updated(changed) {
-    console.log('canged', changed);
+    const activeBookmarkChanged = changed.has('activeBookmarkID');
+    if (activeBookmarkChanged && (this.activeBookmarkID !== undefined)) { /* can be zero */
+      this.shadowRoot.querySelector('.active').scrollIntoView();
+    }
     // this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
   }
 
