@@ -18,8 +18,6 @@ export class IABookmarksList extends LitElement {
       bookmarks: { type: Object },
       editedBookmark: { type: Object },
       renderHeader: { type: Boolean },
-
-      sortedBookmarks: { type: Array },
     };
   }
 
@@ -29,24 +27,8 @@ export class IABookmarksList extends LitElement {
     this.bookmarkColors = [];
     this.defaultBookmarkColor = {};
     this.bookmarks = {};
-    this.sortedBookmarks = [];
     this.editedBookmark = {};
     this.renderHeader = false;
-  }
-
-  firstUpdated() {
-    this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
-  }
-
-  updated(changed) {
-    const activeBookmarkChanged = changed.has('activeBookmarkID');
-    console.log('IA BOOKMARKS LIST UPDATED : activeBookmarkChanged ', activeBookmarkChanged);
-    console.log('IA BOOKMARKS LIST UPDATED : this.activeBookmarkChanged ', this.activeBookmarkID);
-
-    if (activeBookmarkChanged) { /* can be zero */
-      this.shadowRoot.querySelector('.content.active').scrollIntoView();
-    }
-    // this.sortedBookmarks = this.sortBookmarks(this.bookmarks);
   }
 
   emitEditEvent(e, bookmark) {
@@ -125,6 +107,7 @@ export class IABookmarksList extends LitElement {
       <li
         @click=${() => this.emitSelectedEvent(bookmark)}
         tabindex="0"
+        data-pageIndex=${bookmark.id}
       >
         <div class="separator"></div>
         <div class="content ${activeClass}">
@@ -161,6 +144,16 @@ export class IABookmarksList extends LitElement {
     `;
   }
 
+  sortBookmarks() {
+    const sortedKeys = Object.keys(this.bookmarks).sort((a, b) => {
+      if (+a > +b) { return 1; }
+      if (+a < +b) { return -1; }
+      return 0;
+    });
+    const sortedBookmarks = sortedKeys.map(key => this.bookmarks[key]);
+    return sortedBookmarks;
+  }
+
   get bookmarksCount() {
     const count = this.bookmarks.length;
     return html`<small>(${count})</small>`;
@@ -175,26 +168,18 @@ export class IABookmarksList extends LitElement {
     </header>`;
   }
 
-  sortBookmarks() {
-    const sortedKeys = Object.keys(this.bookmarks).sort((a, b) => {
-      if (+a > +b) { return 1; }
-      if (+a < +b) { return -1; }
-      return 0;
-    });
-
-    const sortedBookmarks = sortedKeys.map(key => this.bookmarks[key]);
-
-    return sortedBookmarks;
+  get bookmarkslist() {
+    const sortedBookmarks = this.sortBookmarks();
+    return html`<ul>
+        ${repeat(sortedBookmarks, bookmark => bookmark?.id, this.bookmarkItem.bind(this))}
+        <div class="separator"></div>
+      </ul>`;
   }
 
   render() {
-    console.log('RENDER, sortedbookmarker', this.sortedBookmarks);
     return html`
       ${this.renderHeader ? this.headerSection : nothing}
-      <ul>
-        ${this.sortedBookmarks.length ? repeat(this.sortedBookmarks, bookmark => bookmark.id, this.bookmarkItem.bind(this)) : nothing}
-        <div class="separator"></div>
-      </ul>
+      ${Object.keys(this.bookmarks).length ? this.bookmarkslist : nothing}
     `;
   }
 }
